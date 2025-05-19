@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TechTalk Blog</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --accent: #0066cc;
+    }
+
+    body.dark {
+      --bg: #1e1e1e;
+      --text: #f0f0f0;
+      --accent: #66ccff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    header, footer {
+      background: var(--accent);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav {
+      background: #eee;
+      padding: 0.5rem;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    main {
+      padding: 1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+      background: #f9f9f9;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    input, textarea {
+      padding: 10px;
+      font-size: 1rem;
+    }
+
+    button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #004d99;
+    }
+
+    .toggle {
+      margin-top: 1rem;
+      text-align: right;
+    }
+
+    @media (max-width: 600px) {
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📰 TechTalk Blog</h1>
+    <p>Insights, tutorials, and tech news.</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Posts</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <main>
+
+    <section class="card">
+      <h2>👋 Welcome</h2>
+      <p>Welcome to the TechTalk Blog where we share the latest in technology, coding tutorials, and industry news.</p>
+    </section>
+
+    <section class="card">
+      <h2>🗞 Featured Post</h2>
+      <article>
+        <h3>Mastering JavaScript in 2025</h3>
+        <p>JavaScript remains one of the most powerful tools in web development. Discover the latest ES features and how to apply them...</p>
+        <small>Posted on May 19, 2025</small>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>📩 Contact Us</h2>
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <input type="email" id="email" placeholder="Your Email" required />
+        <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+
+    <div class="toggle">
+      <button onclick="toggleDarkMode()">🌓 Toggle Dark Mode</button>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 TechTalk Blog. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Theme toggle with localStorage
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+      localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+    }
+
+    // Load saved theme
+    window.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+      }
+    });
+
+    // Form validation
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (name && email && message) {
+        alert(`Thank you, ${name}, your message has been received!`);
+        this.reset();
+      } else {
+        alert("Please fill in all fields.");
+      }
+    });
+  </script>
+
+</body>
+</html>
